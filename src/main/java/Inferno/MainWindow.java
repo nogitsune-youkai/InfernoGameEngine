@@ -1,5 +1,7 @@
 package Inferno;
 
+
+
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
@@ -18,9 +20,9 @@ public class MainWindow {
 
     private static MainWindow mainWindow = null;
     private long windowID;
-    private int width;
-    private int height;
-    private String title;
+    private final int width;
+    private final int height;
+    private final String title;
     private MainWindow() {
         this.width = 1920;
         this.height = 1080;
@@ -68,6 +70,13 @@ public class MainWindow {
         if ( windowID == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
+        // setting callbacks for input
+        glfwSetCursorPosCallback(windowID, MouseListener::mousePosCallback);
+        glfwSetMouseButtonCallback(windowID, MouseListener::mouseButtonCallback);
+        glfwSetScrollCallback(windowID, MouseListener::mouseScrollCallback);
+        glfwSetKeyCallback(windowID, KeyListener::keyCallback);
+
+
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
         glfwSetKeyCallback(windowID, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
@@ -112,7 +121,7 @@ public class MainWindow {
         GL.createCapabilities();
 
         // Set the clear color
-        glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
