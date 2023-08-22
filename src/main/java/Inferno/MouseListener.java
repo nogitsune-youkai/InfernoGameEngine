@@ -35,8 +35,8 @@ public class MouseListener {
                 || getInstance().mouseButtonPressed[1]
                 || getInstance().mouseButtonPressed[2];
 
-        System.out.println("Mouse X position is " + getInstance().xPos);
-        System.out.println("Mouse Y position is " + getInstance().yPos);
+        //System.out.println("Mouse X position is " + getInstance().xPos);
+        //System.out.println("Mouse Y position is " + getInstance().yPos);
     }
 
     public static void mouseButtonCallback(long window, int button, int action, int mods)

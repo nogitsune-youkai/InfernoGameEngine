@@ -14,6 +14,7 @@ public class KeyListener {
     public static void keyCallback(long window, int key, int scancode, int action, int mods) {
         if(action == GLFW_PRESS) {
             getInstance().KeyPressed[key] = true;
+            //System.out.println("Key pressed");
         } else if (action == GLFW_RELEASE) {
             getInstance().KeyPressed[key] = false;
         }
@@ -22,12 +23,12 @@ public class KeyListener {
 
     public static KeyListener getInstance() {
         if(KeyListener.instance == null) {
-            instance = new KeyListener();
+            KeyListener.instance = new KeyListener();
         }
-        return instance;
+        return KeyListener.instance;
     }
 
     public static boolean isKeyPressed(int keyCode) {
-        return getInstance().KeyPressed[keyCode];
+            return getInstance().KeyPressed[keyCode];
     }
 }
